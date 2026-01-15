@@ -1,0 +1,36 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@agent-patterns/core": ["../../packages/core/src"],
+      "@agent-patterns/metric-card": ["../../patterns/metric-card"],
+      "@agent-patterns/data-table": ["../../patterns/data-table"],
+      "@agent-patterns/chart": ["../../patterns/chart"],
+      "@agent-patterns/agent-form": ["../../patterns/agent-form"],
+      "@agent-patterns/thinking-indicator": ["../../patterns/thinking-indicator"],
+      "@agent-patterns/insights-list": ["../../patterns/insights-list"],
+      "@agent-patterns/detail-card": ["../../patterns/detail-card"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+

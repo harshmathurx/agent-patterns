@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@agent-patterns/core": ["./packages/core/src"],
+      "@agent-patterns/cli": ["./packages/cli/src"]
+    }
+  },
+  "include": [],
+  "references": []
+}
+
