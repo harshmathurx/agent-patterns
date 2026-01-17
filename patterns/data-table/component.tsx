@@ -12,24 +12,42 @@ export interface DataTableProps<T = Record<string, unknown>> extends React.HTMLA
   columns: Column<T>[]
   data: T[]
   emptyMessage?: string
+  caption?: string
+  ariaLabel?: string
 }
 
 export function DataTable<T extends Record<string, unknown>>({
   columns,
   data,
   emptyMessage = "No data available",
+  caption,
+  ariaLabel,
   className,
   ...props
 }: DataTableProps<T>) {
+  const tableId = React.useId()
+  const captionId = `${tableId}-caption`
+  const emptyMessageId = `${tableId}-empty`
+
   return (
     <div className={cn("rounded-lg border border-border bg-card", className)} {...props}>
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table
+          className="w-full"
+          aria-label={ariaLabel}
+          aria-describedby={caption ? captionId : undefined}
+        >
+          {caption && (
+            <caption id={captionId} className="sr-only">
+              {caption}
+            </caption>
+          )}
           <thead>
             <tr className="border-b border-border bg-muted/50">
               {columns.map((column) => (
                 <th
                   key={column.key}
+                  scope="col"
                   className={cn(
                     "px-4 py-3 text-left text-sm font-medium text-foreground",
                     column.className
@@ -43,7 +61,13 @@ export function DataTable<T extends Record<string, unknown>>({
           <tbody>
             {data.length === 0 ? (
               <tr>
-                <td colSpan={columns.length} className="px-4 py-8 text-center text-sm text-muted-foreground">
+                <td
+                  colSpan={columns.length}
+                  className="px-4 py-8 text-center text-sm text-muted-foreground"
+                  role="status"
+                  aria-live="polite"
+                  id={emptyMessageId}
+                >
                   {emptyMessage}
                 </td>
               </tr>

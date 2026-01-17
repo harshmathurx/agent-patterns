@@ -62,7 +62,12 @@ export const AgentForm = React.forwardRef<HTMLFormElement, AgentFormProps>(
                 className="text-sm font-medium text-foreground"
               >
                 {field.label}
-                {field.required && <span className="text-destructive"> *</span>}
+                {field.required && (
+                  <>
+                    <span className="text-destructive" aria-label="required"> *</span>
+                    <span className="sr-only"> (required)</span>
+                  </>
+                )}
               </label>
               {field.type === "textarea" ? (
                 <textarea
@@ -70,6 +75,7 @@ export const AgentForm = React.forwardRef<HTMLFormElement, AgentFormProps>(
                   name={field.name}
                   placeholder={field.placeholder}
                   required={field.required}
+                  aria-required={field.required}
                   value={formData[field.name] as string}
                   onChange={(e) => handleChange(field.name, e.target.value)}
                   className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
@@ -80,6 +86,7 @@ export const AgentForm = React.forwardRef<HTMLFormElement, AgentFormProps>(
                   id={field.name}
                   name={field.name}
                   required={field.required}
+                  aria-required={field.required}
                   value={formData[field.name] as string}
                   onChange={(e) => handleChange(field.name, e.target.value)}
                   className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
@@ -98,6 +105,7 @@ export const AgentForm = React.forwardRef<HTMLFormElement, AgentFormProps>(
                     name={field.name}
                     checked={formData[field.name] as boolean}
                     onChange={(e) => handleChange(field.name, e.target.checked)}
+                    aria-required={field.required}
                     className="h-4 w-4 rounded border-input text-primary focus:ring-2 focus:ring-ring"
                   />
                   <span className="text-sm text-muted-foreground">{field.placeholder}</span>
@@ -109,6 +117,7 @@ export const AgentForm = React.forwardRef<HTMLFormElement, AgentFormProps>(
                   name={field.name}
                   placeholder={field.placeholder}
                   required={field.required}
+                  aria-required={field.required}
                   value={formData[field.name] as string | number}
                   onChange={(e) =>
                     handleChange(

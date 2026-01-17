@@ -47,5 +47,3 @@ export const defaultTheme: ThemeConfig = {
   },
 }
 
-export type { ThemeConfig }
-

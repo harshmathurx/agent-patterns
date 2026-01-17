@@ -16,23 +16,34 @@ export interface DetailCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const DetailCard = React.forwardRef<HTMLDivElement, DetailCardProps>(
   ({ title, description, fields, actions, className, ...props }, ref) => {
+    const cardId = React.useId()
+    const titleId = title ? `${cardId}-title` : undefined
+    const descriptionId = description ? `${cardId}-description` : undefined
+
     return (
       <div
         ref={ref}
+        role="region"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
         className={cn("rounded-lg border border-border bg-card p-6", className)}
         {...props}
       >
         {(title || description) && (
           <div className="mb-6">
             {title && (
-              <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+              <h3 id={titleId} className="text-lg font-semibold text-foreground">
+                {title}
+              </h3>
             )}
             {description && (
-              <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+              <p id={descriptionId} className="mt-1 text-sm text-muted-foreground">
+                {description}
+              </p>
             )}
           </div>
         )}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <dl className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {fields.map((field, index) => (
             <div
               key={index}
@@ -45,9 +56,11 @@ export const DetailCard = React.forwardRef<HTMLDivElement, DetailCardProps>(
               <dd className="text-sm text-foreground">{field.value}</dd>
             </div>
           ))}
-        </div>
+        </dl>
         {actions && (
-          <div className="mt-6 flex gap-2">{actions}</div>
+          <div className="mt-6 flex gap-2" role="group" aria-label="Actions">
+            {actions}
+          </div>
         )}
       </div>
     )

@@ -24,6 +24,14 @@ export const dataTableSchema = z.object({
     .string()
     .optional()
     .describe("Message to display when table has no data"),
+  caption: z
+    .string()
+    .optional()
+    .describe("Optional table caption for accessibility"),
+  ariaLabel: z
+    .string()
+    .optional()
+    .describe("Optional ARIA label for the table"),
   className: z
     .string()
     .optional()
