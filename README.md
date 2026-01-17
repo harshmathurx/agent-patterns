@@ -125,6 +125,22 @@ Agent Patterns implements and aligns with:
 
 All patterns are designed to comply with these standards out of the box.
 
+### Accessibility Features
+
+Every pattern includes:
+- **ARIA labels and roles** - Full screen reader support
+- **Keyboard navigation** - All interactive elements are keyboard accessible
+- **Semantic HTML** - Proper use of HTML5 semantic elements
+- **Focus management** - Visible focus states and logical tab order
+- **Color contrast** - WCAG AA compliant color combinations
+
+### Compliance Documentation
+
+- [`docs/STANDARDS_REFERENCE.md`](./docs/STANDARDS_REFERENCE.md) - Complete standards reference
+- [`docs/COMPLIANCE_AUDIT.md`](./docs/COMPLIANCE_AUDIT.md) - Full compliance audit report
+- [`docs/COMPLIANCE_CHECKLIST.md`](./docs/COMPLIANCE_CHECKLIST.md) - Verification checklist
+- [`docs/STANDARDS_INTEGRATION.md`](./docs/STANDARDS_INTEGRATION.md) - Integration guide
+
 ## References
 
 - [shadcn/ui](https://ui.shadcn.com/)

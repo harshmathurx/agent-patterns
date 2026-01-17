@@ -496,13 +496,42 @@ export const detailCardSchema = z.object({
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">Agent Patterns</h1>
-              <p className="text-sm text-muted-foreground">
-                Copy-paste patterns for LLM-generated UIs • Optimized for CopilotKit & AI agents
+            <div className="space-y-2">
+              <h1 className="text-3xl font-bold text-foreground">Agent Patterns</h1>
+              <p className="text-base text-muted-foreground max-w-2xl">
+                The implementation layer for agentic UI standards. Ready-to-use React components and LLM-optimized schemas that make standards actionable.
               </p>
+              <div className="flex flex-wrap items-center gap-3 mt-3">
+                <a
+                  href="https://rams.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted transition-colors"
+                >
+                  <span className="text-green-600 dark:text-green-400">✓</span>
+                  rams.ai
+                </a>
+                <a
+                  href="https://ui-skills.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted transition-colors"
+                >
+                  <span className="text-green-600 dark:text-green-400">✓</span>
+                  ui-skills.com
+                </a>
+                <a
+                  href="https://vercel.com/design/guidelines"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted transition-colors"
+                >
+                  <span className="text-green-600 dark:text-green-400">✓</span>
+                  Vercel Guidelines
+                </a>
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <label htmlFor="theme-select" className="text-sm font-medium text-foreground">
@@ -547,6 +576,75 @@ export const detailCardSchema = z.object({
       </header>
 
       <div className="container mx-auto px-4 py-8">
+        {/* Standards Compliance Section */}
+        <div className="mb-8 rounded-xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-purple-500/5 p-6">
+          <div className="mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-foreground">Standards Compliance</h2>
+            <span className="rounded-full bg-green-500/20 px-2 py-0.5 text-xs font-semibold text-green-700 dark:text-green-400">
+              All Patterns Compliant
+            </span>
+          </div>
+          <p className="mb-4 text-sm text-muted-foreground">
+            Agent Patterns implements the "holy trinity" of agentic UI standards. While these resources define the principles, we provide the ready-to-use components that make them actionable.
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            <a
+              href="https://rams.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md"
+            >
+              <div className="mb-2 flex items-center gap-2">
+                <span className="text-lg font-semibold text-foreground">rams.ai</span>
+                <span className="text-green-600 dark:text-green-400">✓</span>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Accessibility & design review standards. All patterns include ARIA labels, keyboard navigation, and screen reader support.
+              </p>
+            </a>
+            <a
+              href="https://ui-skills.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md"
+            >
+              <div className="mb-2 flex items-center gap-2">
+                <span className="text-lg font-semibold text-foreground">ui-skills.com</span>
+                <span className="text-green-600 dark:text-green-400">✓</span>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Agentic UI constraints and primitives. Every pattern includes LLM-optimized Zod schemas with descriptions.
+              </p>
+            </a>
+            <a
+              href="https://vercel.com/design/guidelines"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md"
+            >
+              <div className="mb-2 flex items-center gap-2">
+                <span className="text-lg font-semibold text-foreground">Vercel Guidelines</span>
+                <span className="text-green-600 dark:text-green-400">✓</span>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Web interface standards. All patterns use CSS variables, support 20+ themes, and follow responsive design principles.
+              </p>
+            </a>
+          </div>
+          <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50/80 p-4 dark:border-blue-800 dark:bg-blue-950/80">
+            <p className="text-sm text-blue-950 dark:text-blue-50">
+              <strong className="font-semibold">Learn more:</strong> See{" "}
+              <a
+                href="/docs/standards-integration"
+                className="underline hover:no-underline"
+              >
+                Standards Integration Guide
+              </a>{" "}
+              for detailed compliance information and integration examples.
+            </p>
+          </div>
+        </div>
+
         <div className="grid gap-6 lg:grid-cols-4">
           <aside className="lg:col-span-1">
             <div className="rounded-lg border border-border bg-card p-4">
@@ -558,13 +656,37 @@ export const detailCardSchema = z.object({
                     onClick={() => {
                       setSelectedPattern(pattern.id)
                     }}
-                    className={`w-full rounded-md px-3 py-2 text-left text-sm transition-colors ${
+                    className={`group relative w-full rounded-md px-3 py-2.5 text-left text-sm transition-colors ${
                       selectedPattern === pattern.id
                         ? "bg-primary text-primary-foreground"
                         : "text-foreground hover:bg-muted"
                     }`}
                   >
-                    {pattern.name}
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">{pattern.name}</span>
+                      {selectedPattern === pattern.id && (
+                        <div className="h-1.5 w-1.5 rounded-full bg-primary-foreground" />
+                      )}
+                    </div>
+                    <div className={`mt-1.5 flex flex-wrap items-center gap-1.5 ${
+                      selectedPattern === pattern.id ? "opacity-90" : ""
+                    }`}>
+                      <span className={`inline-flex items-center gap-1 rounded-full border px-1.5 py-0.5 text-[10px] font-medium ${
+                        selectedPattern === pattern.id
+                          ? "border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground"
+                          : "border-green-200 bg-green-50 text-green-700 dark:border-green-800 dark:bg-green-950/50 dark:text-green-400"
+                      }`}>
+                        <span>✓</span>
+                        <span>Compliant</span>
+                      </span>
+                      <span className={`inline-flex items-center gap-1 rounded-full border px-1.5 py-0.5 text-[10px] font-medium ${
+                        selectedPattern === pattern.id
+                          ? "border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground"
+                          : "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400"
+                      }`}>
+                        LLM-Ready
+                      </span>
+                    </div>
                   </button>
                 ))}
               </nav>
