@@ -78,5 +78,22 @@ The component uses CSS variables compatible with all shadcn themes:
 - `border-border`
 - `text-muted-foreground`
 - `text-foreground`
+- `text-emerald-600` / `text-destructive` for trend indicators (theme-aware)
+
+## Accessibility
+
+The Metric Card component includes full accessibility support:
+
+- **ARIA labels** - Card has `role="region"` with descriptive `aria-label`
+- **Semantic structure** - Proper heading and label associations
+- **Screen reader support** - Trend information is fully described
+- **Theme-aware colors** - Uses semantic colors that work across all themes
+- **Decorative elements** - Icons are marked with `aria-hidden="true"`
+
+## Standards Compliance
+
+✅ **rams.ai** - Full ARIA support, keyboard accessible, screen reader compatible  
+✅ **ui-skills.com** - Schema-driven, LLM-generatable component  
+✅ **Vercel Guidelines** - Theme-compatible, responsive design
 
 

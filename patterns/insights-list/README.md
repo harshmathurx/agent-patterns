@@ -72,4 +72,20 @@ useRenderToolCall({
 })
 ```
 
+## Accessibility
+
+The Insights List component includes full accessibility support:
+
+- **Semantic structure** - Uses `role="list"` and `role="listitem"` for proper list semantics
+- **ARIA labels** - Container has `role="region"` with proper labeling
+- **Empty state** - Empty message uses `role="status"` with `aria-live="polite"`
+- **Screen reader support** - All content is accessible to screen readers
+- **Decorative elements** - Icons are marked with `aria-hidden="true"`
+
+## Standards Compliance
+
+✅ **rams.ai** - Accessible list structure with proper ARIA attributes  
+✅ **ui-skills.com** - Schema-driven, LLM-generatable component  
+✅ **Vercel Guidelines** - Theme-compatible, responsive design
+
 

@@ -1,0 +1,37 @@
+# Cursor ignores these files/directories from AI context
+# Note: This is separate from .gitignore
+# We want docs/ and llm-docs/ accessible to Cursor, so they're NOT listed here
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Testing
+coverage/
+.vitest/
+
+# Cache
+.cache/
+.turbo/
+.eslintcache
+
+# Environment files (sensitive)
+.env
+.env.local
+.env*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+

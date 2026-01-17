@@ -71,4 +71,20 @@ useRenderToolCall({
 })
 ```
 
+## Accessibility
+
+The Agent Form component includes full accessibility support:
+
+- **Label associations** - All inputs have associated `<label>` elements with `htmlFor`
+- **Required fields** - Required fields include `aria-required="true"` and visual indicators
+- **Screen reader support** - Required indicators include screen reader text
+- **Focus management** - Proper focus states and keyboard navigation
+- **Form semantics** - Uses semantic `<form>` element with proper structure
+
+## Standards Compliance
+
+✅ **rams.ai** - Accessible form structure with proper labels and ARIA attributes  
+✅ **ui-skills.com** - Schema-driven, LLM-generatable component  
+✅ **Vercel Guidelines** - Theme-compatible, responsive design
+
 

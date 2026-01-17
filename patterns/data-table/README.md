@@ -17,6 +17,8 @@ Use the Data Table pattern when you need to:
 | `columns` | `Column[]` | Yes | Array of column definitions |
 | `data` | `T[]` | Yes | Array of data objects (rows) |
 | `emptyMessage` | `string` | No | Message when table is empty |
+| `caption` | `string` | No | Table caption for accessibility (hidden visually, announced to screen readers) |
+| `ariaLabel` | `string` | No | ARIA label for the table |
 | `className` | `string` | No | Additional CSS classes |
 
 ## Column Definition
@@ -72,5 +74,21 @@ useRenderToolCall({
   render: (props) => <DataTable {...props} />
 })
 ```
+
+## Accessibility
+
+The Data Table component includes full accessibility support:
+
+- **Semantic HTML** - Uses proper `<table>`, `<thead>`, `<tbody>` structure
+- **ARIA labels** - Supports `caption` and `ariaLabel` props
+- **Scope attributes** - All headers include `scope="col"` for screen readers
+- **Empty state** - Empty message is announced with `role="status"` and `aria-live="polite"`
+- **Keyboard navigation** - Full keyboard support for table navigation
+
+## Standards Compliance
+
+✅ **rams.ai** - Accessible table structure with proper ARIA attributes  
+✅ **ui-skills.com** - Schema-driven, LLM-generatable component  
+✅ **Vercel Guidelines** - Theme-compatible, responsive design
 
 

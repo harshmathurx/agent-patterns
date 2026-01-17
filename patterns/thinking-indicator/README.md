@@ -53,4 +53,20 @@ useRenderToolCall({
 })
 ```
 
+## Accessibility
+
+The Thinking Indicator component includes comprehensive accessibility support:
+
+- **Status announcements** - Uses `role="status"` with `aria-live="polite"` to announce status changes
+- **Busy state** - Includes `aria-busy="true"` to indicate processing state
+- **ARIA label** - Message is accessible via `aria-label`
+- **Screen reader support** - Status message is announced to screen readers
+- **Decorative animations** - Animation elements are marked with `aria-hidden="true"`
+
+## Standards Compliance
+
+✅ **rams.ai** - Full accessibility with status announcements and screen reader support  
+✅ **ui-skills.com** - Schema-driven, LLM-generatable component  
+✅ **Vercel Guidelines** - Theme-compatible, responsive design
+
 
