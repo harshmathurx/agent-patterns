@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "pattern": "data-table",
+  "version": "1.0.0",
+  "lastAuditDate": "2026-01-01",
+  "standards": {
+    "rams-ai": {
+      "status": "partial",
+      "compliance": 65,
+      "requirements": {
+        "ariaLabels": {
+          "status": "needs-improvement",
+          "notes": "Missing aria-label or aria-labelledby for table"
+        },
+        "keyboardNavigation": {
+          "status": "needs-improvement",
+          "notes": "Hover states not keyboard-accessible, no keyboard navigation for interactive rows"
+        },
+        "screenReaderSupport": {
+          "status": "needs-improvement",
+          "notes": "No scope attributes on th elements, missing caption element, empty state message not announced"
+        },
+        "semanticHtml": {
+          "status": "compliant",
+          "notes": "Uses semantic HTML (table, thead, tbody)"
+        },
+        "tableStructure": {
+          "status": "needs-improvement",
+          "notes": "Missing scope attributes, no sortable column indicators"
+        }
+      },
+      "issues": [
+        "Missing aria-label or aria-labelledby for table",
+        "No scope attributes on th elements",
+        "Missing caption element for table description",
+        "Empty state message not announced to screen readers",
+        "Hover states not keyboard-accessible",
+        "No sortable column indicators (if sorting is intended)"
+      ],
+      "fixes": [
+        "Add aria-label or caption to table",
+        "Add scope='col' to all th elements",
+        "Add role='status' to empty state message",
+        "Add keyboard navigation for interactive rows",
+        "Consider adding aria-sort for sortable columns",
+        "Add aria-rowcount and aria-rowindex for large tables"
+      ]
+    },
+    "ui-skills": {
+      "status": "compliant",
+      "compliance": 90,
+      "requirements": {
+        "schemaDriven": {
+          "status": "compliant",
+          "notes": "Well-defined Zod schema"
+        },
+        "llmGeneratable": {
+          "status": "partial",
+          "notes": "Generic type <T> might be complex for LLMs to understand"
+        },
+        "primitiveBased": {
+          "status": "compliant",
+          "notes": "Uses semantic table primitives"
+        },
+        "noComplexState": {
+          "status": "compliant",
+          "notes": "No complex state management"
+        }
+      },
+      "issues": [
+        "Generic type <T> might be complex for LLMs to understand"
+      ],
+      "fixes": []
+    },
+    "vercel-guidelines": {
+      "status": "compliant",
+      "compliance": 95,
+      "requirements": {
+        "cssVariables": {
+          "status": "compliant",
+          "notes": "Uses CSS variables for theming"
+        },
+        "responsive": {
+          "status": "compliant",
+          "notes": "Responsive with overflow handling"
+        },
+        "performance": {
+          "status": "compliant",
+          "notes": "Good performance, no unnecessary re-renders"
+        },
+        "themeTokens": {
+          "status": "compliant",
+          "notes": "Uses theme-aware variables"
+        }
+      },
+      "issues": [],
+      "fixes": []
+    }
+  },
+  "overallCompliance": 83,
+  "overallStatus": "partial",
+  "nextAuditDate": "2026-04-01",
+  "notes": "Strong Vercel Guidelines compliance. Needs accessibility improvements for rams.ai, particularly ARIA labels and keyboard navigation."
+}
+

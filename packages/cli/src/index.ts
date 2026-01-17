@@ -5,6 +5,7 @@ import { existsSync, mkdirSync, copyFileSync, readdirSync, statSync, writeFileSy
 import { join, dirname } from "path"
 import { fileURLToPath } from "url"
 import chalk from "chalk"
+import { auditPatterns, printAuditReport } from "./commands/audit.js"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -121,6 +122,26 @@ program
     }
 
     console.log(chalk.green("\n✓ All patterns updated!"))
+  })
+
+program
+  .command("audit")
+  .description("Audit patterns against standards (rams.ai, ui-skills.com, Vercel Guidelines)")
+  .option("-v, --verbose", "Show detailed compliance information for each pattern")
+  .option("-p, --patterns <dir>", "Patterns directory path", "patterns")
+  .action((options) => {
+    try {
+      const report = auditPatterns(options.patterns)
+      printAuditReport(report, options.verbose || false)
+
+      // Exit with error code if there are critical issues
+      if (report.criticalIssues.length > 0) {
+        process.exit(1)
+      }
+    } catch (error) {
+      console.error(chalk.red(`✗ Audit failed: ${error}`))
+      process.exit(1)
+    }
   })
 
 function copyDirectory(src: string, dest: string): void {
