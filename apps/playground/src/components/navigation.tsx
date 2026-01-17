@@ -33,6 +33,15 @@ export function Navigation() {
               Playground
             </Link>
             <Link
+              href="/standards"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-foreground",
+                pathname === "/standards" ? "text-foreground" : "text-muted-foreground"
+              )}
+            >
+              Standards
+            </Link>
+            <Link
               href="/docs"
               className={cn(
                 "text-sm font-medium transition-colors hover:text-foreground",
