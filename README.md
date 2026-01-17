@@ -2,6 +2,8 @@
 
 An open-source, copy-paste pattern library for LLM-generated UIs.
 
+**The implementation layer for agentic UI standards.** While [rams.ai](https://rams.ai), [ui-skills.com](https://ui-skills.com), and [Vercel Design Guidelines](https://vercel.com/design/guidelines) define the principles, Agent Patterns provides the ready-to-use React components and LLM-optimized schemas that make those standards actionable.
+
 ## Core Principles
 
 1. **Copy-paste model** (not npm packages)
@@ -113,12 +115,25 @@ npx agent-patterns update
 - ✅ Testing: `vitest` (80%+ coverage)
 - ✅ Build: `pnpm build` (success)
 
+## Standards Compliance
+
+Agent Patterns implements and aligns with:
+
+- ✅ [Vercel Design Guidelines](https://vercel.com/design/guidelines) - Web interface standards
+- ✅ [ui-skills.com](https://ui-skills.com) - Agentic UI constraints and primitives
+- ✅ [rams.ai](https://rams.ai) - Accessibility and design review standards
+
+All patterns are designed to comply with these standards out of the box.
+
 ## References
 
 - [shadcn/ui](https://ui.shadcn.com/)
 - [Zod](https://zod.dev/)
 - [CopilotKit](https://docs.copilotkit.ai/)
 - [React](https://react.dev/)
+- [rams.ai](https://rams.ai) - Accessibility & design review
+- [ui-skills.com](https://ui-skills.com) - Agentic UI guidelines
+- [Vercel Design Guidelines](https://vercel.com/design/guidelines) - Web interface standards
 
 ## License
 

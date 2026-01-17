@@ -29,3 +29,4 @@ export const detailCardSchema = z.object({
 
 export type DetailCardData = z.infer<typeof detailCardSchema>
 
+

@@ -26,3 +26,4 @@
   "ignorePatterns": ["dist", "build", "node_modules", "*.config.js"]
 }
 
+

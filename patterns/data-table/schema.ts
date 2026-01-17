@@ -32,3 +32,4 @@ export const dataTableSchema = z.object({
 
 export type DataTableData = z.infer<typeof dataTableSchema>
 
+

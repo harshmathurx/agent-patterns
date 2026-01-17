@@ -140,3 +140,4 @@ To fully integrate these improvements into `app/page.tsx`:
 7. Use `<Button>` for all buttons
 8. Use `<Select>` for theme selector
 
+

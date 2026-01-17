@@ -79,3 +79,4 @@ The component uses CSS variables compatible with all shadcn themes:
 - `text-muted-foreground`
 - `text-foreground`
 
+

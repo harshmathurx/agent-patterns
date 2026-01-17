@@ -39,3 +39,4 @@ export const ThinkingIndicator = React.forwardRef<HTMLDivElement, ThinkingIndica
 
 ThinkingIndicator.displayName = "ThinkingIndicator"
 
+

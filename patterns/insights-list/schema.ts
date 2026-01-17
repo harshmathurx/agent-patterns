@@ -32,3 +32,4 @@ export const insightsListSchema = z.object({
 
 export type InsightsListData = z.infer<typeof insightsListSchema>
 
+

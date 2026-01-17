@@ -74,3 +74,4 @@ Example: `feat: add notification pattern`
 
 Open an issue or start a discussion on GitHub. We're happy to help!
 
+

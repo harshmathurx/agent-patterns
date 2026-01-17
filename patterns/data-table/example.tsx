@@ -33,3 +33,4 @@ export function DataTableSample() {
   return <DataTable columns={columns} data={data} />
 }
 
+

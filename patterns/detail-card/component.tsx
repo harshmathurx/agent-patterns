@@ -56,3 +56,4 @@ export const DetailCard = React.forwardRef<HTMLDivElement, DetailCardProps>(
 
 DetailCard.displayName = "DetailCard"
 
+

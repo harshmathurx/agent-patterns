@@ -29,3 +29,4 @@ export const chartSchema = z.object({
 
 export type ChartData = z.infer<typeof chartSchema>
 
+

@@ -19,3 +19,4 @@ export const thinkingIndicatorSchema = z.object({
 
 export type ThinkingIndicatorData = z.infer<typeof thinkingIndicatorSchema>
 
+

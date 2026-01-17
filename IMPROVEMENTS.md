@@ -128,3 +128,4 @@ cd apps/docs && pnpm dev
 3. **Pattern-Focused**: Not just components, but complete UI patterns
 4. **Copy-Paste**: Like shadcn, but for agent-generated UIs
 
+

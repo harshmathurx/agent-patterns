@@ -103,3 +103,4 @@ agent-patterns/
 - **TypeScript strict** - No `any` types
 - **Community-driven** - Ready for contributions
 
+
