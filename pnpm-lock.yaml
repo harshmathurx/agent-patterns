@@ -13,13 +13,13 @@ importers:
         version: 6.9.1
       '@testing-library/react':
         specifier: ^14.1.2
-        version: 14.3.1(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.3.1(@types/react@19.2.9)(react-dom@18.3.1(react@19.2.3))(react@19.2.3)
       '@types/node':
         specifier: ^20.11.0
         version: 20.19.30
       '@types/react':
-        specifier: ^18.2.48
-        version: 18.3.27
+        specifier: ^19.2.9
+        version: 19.2.9
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.19.0
         version: 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1)(typescript@5.9.3)
@@ -49,23 +49,23 @@ importers:
         version: link:../../packages/core
       next:
         specifier: 14.1.0
-        version: 14.1.0(@babel/core@7.28.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.1.0(@babel/core@7.28.6)(react-dom@18.3.1(react@19.2.3))(react@19.2.3)
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       react-dom:
         specifier: ^18.2.0
-        version: 18.3.1(react@18.3.1)
+        version: 18.3.1(react@19.2.3)
     devDependencies:
       '@types/node':
         specifier: ^20.11.0
         version: 20.19.30
       '@types/react':
-        specifier: ^18.2.48
-        version: 18.3.27
+        specifier: ^19.2.9
+        version: 19.2.9
       '@types/react-dom':
         specifier: ^18.2.17
-        version: 18.3.7(@types/react@18.3.27)
+        version: 18.3.7(@types/react@19.2.9)
       autoprefixer:
         specifier: ^10.4.17
         version: 10.4.23(postcss@8.5.6)
@@ -107,13 +107,13 @@ importers:
         version: link:../../patterns/thinking-indicator
       next:
         specifier: 14.1.0
-        version: 14.1.0(@babel/core@7.28.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.1.0(@babel/core@7.28.6)(react-dom@18.3.1(react@19.2.3))(react@19.2.3)
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       react-dom:
         specifier: ^18.2.0
-        version: 18.3.1(react@18.3.1)
+        version: 18.3.1(react@19.2.3)
       zod:
         specifier: ^3.22.4
         version: 3.25.76
@@ -122,11 +122,11 @@ importers:
         specifier: ^20.11.0
         version: 20.19.30
       '@types/react':
-        specifier: ^18.2.48
-        version: 18.3.27
+        specifier: ^19.2.9
+        version: 19.2.9
       '@types/react-dom':
         specifier: ^18.2.17
-        version: 18.3.7(@types/react@18.3.27)
+        version: 18.3.7(@types/react@19.2.9)
       autoprefixer:
         specifier: ^10.4.17
         version: 10.4.23(postcss@8.5.6)
@@ -181,8 +181,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       zod:
         specifier: ^3.22.4
         version: 3.25.76
@@ -193,8 +193,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       zod:
         specifier: ^3.22.4
         version: 3.25.76
@@ -205,8 +205,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       zod:
         specifier: ^3.22.4
         version: 3.25.76
@@ -217,8 +217,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       zod:
         specifier: ^3.22.4
         version: 3.25.76
@@ -229,8 +229,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       zod:
         specifier: ^3.22.4
         version: 3.25.76
@@ -241,8 +241,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       zod:
         specifier: ^3.22.4
         version: 3.25.76
@@ -253,8 +253,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       react:
-        specifier: ^18.2.0
-        version: 18.3.1
+        specifier: ^19.2.3
+        version: 19.2.3
       zod:
         specifier: ^3.22.4
         version: 3.25.76
@@ -826,16 +826,13 @@ packages:
   '@types/node@20.19.30':
     resolution: {integrity: sha512-WJtwWJu7UdlvzEAUm484QNg5eAoq5QR08KDNx7g45Usrs2NtOPiX8ugDqmKdXkyL03rBqU5dYNYVQetEpBHq2g==}
 
-  '@types/prop-types@15.7.15':
-    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
-
   '@types/react-dom@18.3.7':
     resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
     peerDependencies:
       '@types/react': ^18.0.0
 
-  '@types/react@18.3.27':
-    resolution: {integrity: sha512-cisd7gxkzjBKU2GgdYrTdtQx1SORymWyaAFhaxQPK9bYO9ot3Y5OikQRvY0VYQtvwjeQnizCINJAenh/V7MK2w==}
+  '@types/react@19.2.9':
+    resolution: {integrity: sha512-Lpo8kgb/igvMIPeNV2rsYKTgaORYdO1XGVZ4Qz3akwOj0ySGYMPlQWa8BaLn0G63D1aSaAQ5ldR06wCpChQCjA==}
 
   '@types/semver@7.7.1':
     resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
@@ -1724,6 +1721,7 @@ packages:
   next@14.1.0:
     resolution: {integrity: sha512-wlzrsbfeSU48YQBjZhDzOwhWhGsy+uQycR8bHAOt1LY1bn3zZEcDyHQOEoN3aWzQ8LHCAJ1nqrWCc9XF2+O45Q==}
     engines: {node: '>=18.17.0'}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -1950,8 +1948,8 @@ packages:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
 
-  react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
+  react@19.2.3:
+    resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -2812,13 +2810,13 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
 
-  '@testing-library/react@14.3.1(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react@14.3.1(@types/react@19.2.9)(react-dom@18.3.1(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@babel/runtime': 7.28.6
       '@testing-library/dom': 9.3.4
-      '@types/react-dom': 18.3.7(@types/react@18.3.27)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      '@types/react-dom': 18.3.7(@types/react@19.2.9)
+      react: 19.2.3
+      react-dom: 18.3.1(react@19.2.3)
     transitivePeerDependencies:
       - '@types/react'
 
@@ -2862,15 +2860,12 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/prop-types@15.7.15': {}
-
-  '@types/react-dom@18.3.7(@types/react@18.3.27)':
+  '@types/react-dom@18.3.7(@types/react@19.2.9)':
     dependencies:
-      '@types/react': 18.3.27
+      '@types/react': 19.2.9
 
-  '@types/react@18.3.27':
+  '@types/react@19.2.9':
     dependencies:
-      '@types/prop-types': 15.7.15
       csstype: 3.2.3
 
   '@types/semver@7.7.1': {}
@@ -3869,7 +3864,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@14.1.0(@babel/core@7.28.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next@14.1.0(@babel/core@7.28.6)(react-dom@18.3.1(react@19.2.3))(react@19.2.3):
     dependencies:
       '@next/env': 14.1.0
       '@swc/helpers': 0.5.2
@@ -3877,9 +3872,9 @@ snapshots:
       caniuse-lite: 1.0.30001764
       graceful-fs: 4.2.11
       postcss: 8.4.31
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      styled-jsx: 5.1.1(@babel/core@7.28.6)(react@18.3.1)
+      react: 19.2.3
+      react-dom: 18.3.1(react@19.2.3)
+      styled-jsx: 5.1.1(@babel/core@7.28.6)(react@19.2.3)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.1.0
       '@next/swc-darwin-x64': 14.1.0
@@ -4064,10 +4059,10 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-dom@18.3.1(react@18.3.1):
+  react-dom@18.3.1(react@19.2.3):
     dependencies:
       loose-envify: 1.4.0
-      react: 18.3.1
+      react: 19.2.3
       scheduler: 0.23.2
 
   react-is@17.0.2: {}
@@ -4076,9 +4071,7 @@ snapshots:
 
   react-refresh@0.17.0: {}
 
-  react@18.3.1:
-    dependencies:
-      loose-envify: 1.4.0
+  react@19.2.3: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -4264,10 +4257,10 @@ snapshots:
     dependencies:
       js-tokens: 9.0.1
 
-  styled-jsx@5.1.1(@babel/core@7.28.6)(react@18.3.1):
+  styled-jsx@5.1.1(@babel/core@7.28.6)(react@19.2.3):
     dependencies:
       client-only: 0.0.1
-      react: 18.3.1
+      react: 19.2.3
     optionalDependencies:
       '@babel/core': 7.28.6
 

@@ -6,11 +6,11 @@
   "types": "./component.tsx",
   "dependencies": {
     "@agent-patterns/core": "workspace:*",
-    "react": "^18.2.0",
+    "react": "^19.2.3",
     "zod": "^3.22.4"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^19.2.3"
   }
 }
 
