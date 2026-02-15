@@ -38,12 +38,12 @@ const scenarios: Scenario[] = [
 ]
 
 export function AIDemoZeroTokens() {
-  const [selectedScenario, setSelectedScenario] = useState<string>(scenarios[0].id)
+  const [selectedScenario, setSelectedScenario] = useState<string>(scenarios[0]?.id || "customer-details")
   const [stage, setStage] = useState(0)
   const [promptText, setPromptText] = useState("")
   const [showByokInput, setShowByokInput] = useState(false)
 
-  const scenario = scenarios.find(s => s.id === selectedScenario)!
+  const scenario = scenarios.find(s => s.id === selectedScenario) || scenarios[0]
 
   useEffect(() => {
     // Reset when scenario changes
@@ -53,15 +53,15 @@ export function AIDemoZeroTokens() {
 
   useEffect(() => {
     // Typewriter effect
-    if (stage === 0 && promptText.length < scenario.prompt.length) {
+    if (scenario && stage === 0 && promptText.length < scenario.prompt.length) {
       const timer = setTimeout(() => {
         setPromptText(scenario.prompt.slice(0, promptText.length + 1))
       }, 30)
       return () => clearTimeout(timer)
-    } else if (stage === 0 && promptText.length === scenario.prompt.length) {
+    } else if (scenario && stage === 0 && promptText.length === scenario.prompt.length) {
       setTimeout(() => setStage(1), 800)
     }
-  }, [stage, promptText, scenario.prompt])
+  }, [stage, promptText, scenario])
 
   useEffect(() => {
     if (stage > 0 && stage < 3) {
@@ -97,7 +97,6 @@ export function AIDemoZeroTokens() {
                     { label: "May", value: 58932 },
                     { label: "Jun", value: 65100 },
                   ]}
-                  height={250}
                 />
               </div>
             )}
@@ -108,7 +107,7 @@ export function AIDemoZeroTokens() {
                     { key: "customer", header: "Customer" },
                     { key: "revenue", header: "Revenue" },
                     { key: "status", header: "Status" },
-                  ] as Column<any>[]}
+                  ] as Column<Record<string, unknown>>[]}
                   data={[
                     { customer: "Acme Corp", revenue: "$45,231", status: "Active" },
                     { customer: "TechStart Inc", revenue: "$32,450", status: "Active" },
@@ -130,7 +129,7 @@ export function AIDemoZeroTokens() {
                     { key: "name", header: "Name" },
                     { key: "email", header: "Email" },
                     { key: "role", header: "Role" },
-                  ] as Column<any>[]}
+                  ] as Column<Record<string, unknown>>[]}
                   data={[
                     { name: "John Doe", email: "john@example.com", role: "Admin" },
                     { name: "Jane Smith", email: "jane@example.com", role: "User" },
@@ -196,7 +195,6 @@ export function AIDemoZeroTokens() {
                     { label: "Sat", value: 3100 },
                     { label: "Sun", value: 2900 },
                   ]}
-                  height={250}
                 />
               </div>
             )}

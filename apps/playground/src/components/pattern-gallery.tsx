@@ -76,7 +76,6 @@ export function PatternGallery({ selectedPattern, onPatternSelect }: PatternGall
                 { label: "Feb", value: 1900 },
                 { label: "Mar", value: 3000 },
               ]}
-              height={180}
             />
           </div>
         )

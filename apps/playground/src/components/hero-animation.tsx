@@ -105,7 +105,6 @@ export function HeroAnimation() {
                   { label: "May", value: 3200 },
                   { label: "Jun", value: 3500 },
                 ]}
-                height={250}
               />
             </div>
           )}

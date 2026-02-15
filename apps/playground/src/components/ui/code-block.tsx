@@ -21,8 +21,8 @@ const CodeBlock = React.forwardRef<HTMLPreElement, CodeBlockProps>(
       setTimeout(() => setCopied(false), 2000)
     }
 
-    // Simple syntax highlighting (can be enhanced with a library like Prism or highlight.js)
-    const highlightCode = (code: string, lang: string) => {
+  // Simple syntax highlighting (can be enhanced with a library like Prism or highlight.js)
+  const highlightCode = (code: string, _lang: string) => {
       // Basic keyword highlighting
       const keywords = [
         "import",

@@ -19,7 +19,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/ui/code-block"
 import { Button } from "@/components/ui/button"
 import { Select } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 import { ToastProvider, useToast } from "@/components/ui/toast"
 
 const patterns = [
@@ -43,7 +42,7 @@ function PlaygroundContent() {
   const [selectedTheme, setSelectedTheme] = useState<ThemeName>("default")
   const [installMethod, setInstallMethod] = useState<"cli" | "manual">("cli")
   const [packageManager, setPackageManager] = useState<"pnpm" | "npm" | "yarn" | "bun">("pnpm")
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, _setSearchQuery] = useState("")
   const [activeTab, setActiveTab] = useState("preview")
 
   useEffect(() => {
@@ -66,6 +65,156 @@ function PlaygroundContent() {
     showToast(`Copied ${type} to clipboard!`, "success")
   }
 
+  const renderPattern = () => {
+    switch (selectedPattern) {
+      case "metric-card":
+        return (
+          <div className="grid gap-4 md:grid-cols-3">
+            <MetricCard
+              label="Total Revenue"
+              value="$45,231"
+              trend={{ value: 20.1, label: "vs last month", direction: "up" }}
+            />
+            <MetricCard
+              label="Active Users"
+              value={2350}
+              trend={{ value: 12.5, label: "vs last month", direction: "up" }}
+            />
+            <MetricCard
+              label="Conversion Rate"
+              value="3.2%"
+              trend={{ value: 5.4, label: "vs last month", direction: "down" }}
+            />
+          </div>
+        )
+      case "data-table": {
+        const columns: Column<{ name: string; email: string; role: string }>[] = [
+          { key: "name", header: "Name" },
+          { key: "email", header: "Email" },
+          { key: "role", header: "Role" },
+        ]
+        const data = [
+          { name: "John Doe", email: "john@example.com", role: "Admin" },
+          { name: "Jane Smith", email: "jane@example.com", role: "User" },
+          { name: "Bob Johnson", email: "bob@example.com", role: "User" },
+        ]
+        return <DataTable columns={columns} data={data} />
+      }
+      case "chart":
+        return (
+          <div className="grid gap-4 md:grid-cols-2">
+            <Chart
+              title="Sales by Month"
+              type="bar"
+              data={[
+                { label: "Jan", value: 1200 },
+                { label: "Feb", value: 1900 },
+                { label: "Mar", value: 3000 },
+                { label: "Apr", value: 2780 },
+              ]}
+            />
+            <Chart
+              title="Revenue Distribution"
+              type="pie"
+              data={[
+                { label: "Product A", value: 45 },
+                { label: "Product B", value: 30 },
+                { label: "Product C", value: 25 },
+              ]}
+            />
+          </div>
+        )
+      case "agent-form":
+        return (
+          <AgentForm
+            title="Contact Form"
+            description="Please fill out the form below"
+            fields={[
+              {
+                name: "name",
+                label: "Name",
+                type: "text",
+                placeholder: "Enter your name",
+                required: true,
+              },
+              {
+                name: "email",
+                label: "Email",
+                type: "email",
+                placeholder: "Enter your email",
+                required: true,
+              },
+              {
+                name: "message",
+                label: "Message",
+                type: "textarea",
+                placeholder: "Enter your message",
+                required: true,
+              },
+            ]}
+            onSubmit={(data) => {
+              console.log("Form submitted:", data)
+              alert("Form submitted! Check console.")
+            }}
+          />
+        )
+      case "streaming-indicator":
+        return (
+          <div className="space-y-4">
+            <StreamingIndicator message="Processing your request..." variant="dots" />
+            <StreamingIndicator message="Analyzing data..." variant="pulse" />
+            <StreamingIndicator message="Loading..." variant="spinner" />
+          </div>
+        )
+      case "insights-list":
+        return (
+          <InsightsList
+            title="Key Insights"
+            insights={[
+              {
+                id: "1",
+                title: "Revenue Growth",
+                description: "Revenue increased by 20% compared to last quarter",
+                type: "success",
+              },
+              {
+                id: "2",
+                title: "User Engagement",
+                description: "Active users decreased slightly this month",
+                type: "warning",
+              },
+              {
+                id: "3",
+                title: "System Status",
+                description: "All systems operating normally",
+                type: "info",
+              },
+            ]}
+          />
+        )
+      case "detail-card":
+        return (
+          <DetailCard
+            title="User Details"
+            description="Information about the selected user"
+            fields={[
+              { label: "Name", value: "John Doe" },
+              { label: "Email", value: "john@example.com" },
+              { label: "Role", value: "Admin" },
+              { label: "Status", value: "Active" },
+              {
+                label: "Bio",
+                value: "Software engineer with 5 years of experience",
+                span: 2,
+              },
+            ]}
+          />
+        )
+      default:
+        return null
+    }
+  }
+
   const getInstallCommand = (): string => {
     const patternName = selectedPattern
     if (installMethod === "cli") {
@@ -80,7 +229,255 @@ function PlaygroundContent() {
     return `# Copy files from patterns/${patternName}/ to your app/patterns/${patternName}/`
   }
 
-  // ... (keep all the renderPattern, getCodePreview, getCopilotKitExample, getSchemaPreview functions from original)
+  const getCodePreview = () => {
+    switch (selectedPattern) {
+      case "metric-card":
+        return `import { MetricCard } from "@/patterns/metric-card/component"
+
+<MetricCard
+  label="Total Revenue"
+  value="$45,231"
+  trend={{
+    value: 20.1,
+    label: "vs last month",
+    direction: "up"
+  }}
+/>`
+      case "data-table":
+        return `import { DataTable } from "@/patterns/data-table/component"
+import type { Column } from "@/patterns/data-table/component"
+
+const columns: Column<{ name: string; email: string; role: string }>[] = [
+  { key: "name", header: "Name" },
+  { key: "email", header: "Email" },
+  { key: "role", header: "Role" }
+]
+
+const data = [
+  { name: "John Doe", email: "john@example.com", role: "Admin" },
+  { name: "Jane Smith", email: "jane@example.com", role: "User" }
+]
+
+<DataTable columns={columns} data={data} />`
+      case "chart":
+        return `import { Chart } from "@/patterns/chart/component"
+
+<Chart
+  title="Sales by Month"
+  type="bar"
+  data={[
+    { label: "Jan", value: 1200 },
+    { label: "Feb", value: 1900 },
+    { label: "Mar", value: 3000 }
+  ]}
+/>`
+      case "agent-form":
+        return `import { AgentForm } from "@/patterns/agent-form/component"
+
+<AgentForm
+  title="Contact Form"
+  description="Please fill out the form below"
+  fields={[
+    {
+      name: "name",
+      label: "Name",
+      type: "text",
+      placeholder: "Enter your name",
+      required: true
+    },
+    {
+      name: "email",
+      label: "Email",
+      type: "email",
+      placeholder: "Enter your email",
+      required: true
+    },
+    {
+      name: "message",
+      label: "Message",
+      type: "textarea",
+      placeholder: "Enter your message",
+      required: true
+    }
+  ]}
+  onSubmit={(data) => console.log(data)}
+/>`
+      case "streaming-indicator":
+        return `import { StreamingIndicator } from "@/patterns/streaming-indicator/component"
+
+<StreamingIndicator
+  message="Processing your request..."
+  variant="dots"
+/>
+
+// Variants: "dots" | "pulse" | "spinner"`
+      case "insights-list":
+        return `import { InsightsList } from "@/patterns/insights-list/component"
+
+<InsightsList
+  title="Key Insights"
+  insights={[
+    {
+      id: "1",
+      title: "Revenue Growth",
+      description: "Revenue increased by 20%",
+      type: "success"
+    },
+    {
+      id: "2",
+      title: "User Engagement",
+      description: "Active users decreased",
+      type: "warning"
+    }
+  ]}
+/>
+
+// Types: "info" | "warning" | "success" | "error"`
+      case "detail-card":
+        return `import { DetailCard } from "@/patterns/detail-card/component"
+
+<DetailCard
+  title="User Details"
+  description="Information about the user"
+  fields={[
+    { label: "Name", value: "John Doe" },
+    { label: "Email", value: "john@example.com" },
+    { label: "Role", value: "Admin" },
+    { label: "Bio", value: "Software engineer", span: 2 }
+  ]}
+/>`
+      default:
+        return "// Select a pattern to see code"
+    }
+  }
+
+  const getCopilotKitExample = () => {
+    const patternName = selectedPattern
+    const componentName = patternName
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join("")
+    const schemaName = patternName.replace(/-/g, "") + "Schema"
+    const toolName = "render_" + patternName.replace(/-/g, "_")
+
+    return `import { useRenderToolCall } from "@copilotkit/react-core"
+import { ${componentName} } from "@/patterns/${patternName}/component"
+import { ${schemaName} } from "@/patterns/${patternName}/schema"
+
+export function ${componentName}Integration() {
+  useRenderToolCall({
+    toolName: "${toolName}",
+    argumentsSchema: ${schemaName},
+    render: (props) => <${componentName} {...props} />
+  })
+
+  return null
+}
+
+// Your agent can now call "${toolName}" and render ${componentName} components dynamically!`
+  }
+
+  const getSchemaPreview = () => {
+    // Schema previews for each pattern
+    const schemas: Record<string, string> = {
+      "metric-card": `import { z } from "zod"
+
+export const metricCardSchema = z.object({
+  label: z.string().describe("Display label for the metric"),
+  value: z.union([z.string(), z.number()]).describe("The metric value to display"),
+  trend: z.object({
+    value: z.number().describe("Percentage change value"),
+    label: z.string().describe("Trend description (e.g., 'vs last month')"),
+    direction: z.enum(["up", "down", "neutral"])
+      .describe("Trend direction: 'up' for positive, 'down' for negative"),
+  }).optional().describe("Optional trend information"),
+  icon: z.any().optional().describe("Optional React icon component"),
+  className: z.string().optional().describe("Additional CSS classes"),
+})`,
+      "data-table": `import { z } from "zod"
+
+export const dataTableSchema = z.object({
+  columns: z.array(z.object({
+    key: z.string().describe("Column key (matches data object keys)"),
+    header: z.string().describe("Column header text"),
+    sortable: z.boolean().optional().describe("Whether column is sortable"),
+  })).describe("Array of column definitions"),
+  data: z.array(z.record(z.any())).describe("Array of row data objects"),
+  className: z.string().optional().describe("Additional CSS classes"),
+})`,
+      "chart": `import { z } from "zod"
+
+export const chartSchema = z.object({
+  title: z.string().optional().describe("Chart title"),
+  data: z.array(z.object({
+    label: z.string().describe("Data point label"),
+    value: z.number().describe("Numeric value for the data point"),
+    color: z.string().optional().describe("Optional color"),
+  })).describe("Array of data points"),
+  type: z.enum(["bar", "line", "pie"]).default("bar")
+    .describe("Chart type: 'bar', 'line', or 'pie'"),
+  showLegend: z.boolean().default(true)
+    .describe("Whether to show the legend"),
+  className: z.string().optional(),
+})`,
+      "agent-form": `import { z } from "zod"
+
+export const agentFormSchema = z.object({
+  title: z.string().optional().describe("Form title"),
+  description: z.string().optional().describe("Form description"),
+  fields: z.array(z.object({
+    name: z.string().describe("Field name (used as key)"),
+    label: z.string().describe("Display label"),
+    type: z.enum(["text", "email", "number", "textarea", "select", "checkbox"])
+      .describe("Input field type"),
+    placeholder: z.string().optional(),
+    required: z.boolean().optional(),
+    options: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+    })).optional().describe("Options for select fields"),
+  })).describe("Array of form field definitions"),
+  onSubmit: z.function().optional(),
+  submitLabel: z.string().default("Submit"),
+  className: z.string().optional(),
+})`,
+      "streaming-indicator": `import { z } from "zod"
+
+export const streamingIndicatorSchema = z.object({
+  message: z.string().describe("Status message to display"),
+  variant: z.enum(["dots", "pulse", "spinner"]).default("dots")
+    .describe("Animation variant: 'dots', 'pulse', or 'spinner'"),
+  className: z.string().optional(),
+})`,
+      "insights-list": `import { z } from "zod"
+
+export const insightsListSchema = z.object({
+  title: z.string().optional().describe("List title"),
+  insights: z.array(z.object({
+    id: z.string().describe("Unique identifier"),
+    title: z.string().describe("Insight title"),
+    description: z.string().describe("Insight description"),
+    type: z.enum(["info", "warning", "success", "error"])
+      .describe("Insight type for styling"),
+    icon: z.any().optional().describe("Optional icon component"),
+  })).describe("Array of insights to display"),
+  className: z.string().optional(),
+})`,
+      "detail-card": `import { z } from "zod"
+
+export const detailCardSchema = z.object({
+  title: z.string().describe("Card title"),
+  description: z.string().optional().describe("Card description"),
+  fields: z.array(z.object({
+    label: z.string().describe("Field label"),
+    value: z.union([z.string(), z.number()]).describe("Field value"),
+    span: z.number().optional().describe("Column span (1-2)"),
+  })).describe("Array of field definitions"),
+  className: z.string().optional(),
+})`,
+    }
+    return schemas[selectedPattern] || `// See patterns/${selectedPattern}/schema.ts for full schema`
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -162,7 +559,7 @@ function PlaygroundContent() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">{/* renderPattern() */}</div>
+                    <div className="space-y-4">{renderPattern()}</div>
                   </CardContent>
                 </Card>
               </TabsContent>

@@ -15,7 +15,7 @@ export function ThemeCustomizer({
   onCustomThemeChange,
 }: ThemeCustomizerProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [customTheme, setCustomTheme] = useState(themes[selectedTheme].css)
+  const [customTheme, setCustomTheme] = useState<Record<string, string>>(themes[selectedTheme].css as Record<string, string>)
   const [showCode, setShowCode] = useState(false)
 
   const handleColorChange = (key: string, value: string) => {
@@ -32,9 +32,9 @@ export function ThemeCustomizer({
 
   const resetToTheme = (themeName: ThemeName) => {
     const theme = themes[themeName]
-    setCustomTheme(theme.css)
+    setCustomTheme(theme.css as Record<string, string>)
     onThemeChange(themeName)
-    onCustomThemeChange(theme.css)
+    onCustomThemeChange(theme.css as Record<string, string>)
   }
 
   const generateCSS = () => {
@@ -56,9 +56,9 @@ ${Object.entries(customTheme)
     const parts = hsl.split(" ")
     if (parts.length < 3) return "#000000"
     
-    const h = parseFloat(parts[0]) || 0
-    const s = parseFloat(parts[1]) || 0
-    const l = parseFloat(parts[2]) || 0
+    const h = parseFloat(parts[0] || "0") || 0
+    const s = parseFloat(parts[1] || "0") || 0
+    const l = parseFloat(parts[2] || "0") || 0
     
     // Convert HSL to RGB for preview
     const hNorm = h / 360

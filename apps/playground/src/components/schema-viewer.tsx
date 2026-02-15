@@ -10,7 +10,7 @@ interface SchemaViewerProps {
   patternName: string
 }
 
-export function SchemaViewer({ schemaCode, patternName }: SchemaViewerProps) {
+export function SchemaViewer({ schemaCode }: SchemaViewerProps) {
   return (
     <Card className="border-2 border-blue-500/20 bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20">
       <CardHeader>
