@@ -1,5 +1,22 @@
 import * as React from "react"
 import { cn } from "@agent-patterns/core"
+import {
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts"
 
 export interface ChartDataPoint {
   label: string
@@ -10,158 +27,190 @@ export interface ChartDataPoint {
 export interface ChartProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string
   data: ChartDataPoint[]
-  type?: "bar" | "line" | "pie"
+  type?: "bar" | "line" | "area" | "pie" | "donut"
   showLegend?: boolean
+  showGrid?: boolean
+  colors?: string[]
 }
 
+const DEFAULT_COLORS = [
+  "hsl(var(--primary))",
+  "hsl(var(--chart-2))",
+  "hsl(var(--chart-3))",
+  "hsl(var(--chart-4))",
+  "hsl(var(--chart-5))",
+]
+
 export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
-  ({ title, data, type = "bar", showLegend = true, className, ...props }, ref) => {
+  (
+    {
+      title,
+      data,
+      type = "bar",
+      showLegend = true,
+      showGrid = true,
+      colors = DEFAULT_COLORS,
+      className,
+      ...props
+    },
+    ref
+  ) => {
     const chartId = React.useId()
     const titleId = title ? `${chartId}-title` : undefined
-    const chartLabelId = `${chartId}-label`
-    const dataTableId = `${chartId}-data`
-    
-    const maxValue = Math.max(...data.map((d) => d.value), 0)
-    const totalValue = data.reduce((sum, p) => sum + p.value, 0)
 
-    // Generate accessible text description
-    const chartDescription = `${type} chart${title ? `: ${title}` : ""} showing ${data.length} data points. ${data.map((d, i) => `${d.label}: ${d.value}${i < data.length - 1 ? ", " : ""}`).join("")}`
+    // Transform data for Recharts
+    const chartData = data.map((point, index) => ({
+      name: point.label,
+      value: point.value,
+      fill: point.color || colors[index % colors.length],
+    }))
 
-    // Generate data table for screen readers
-    const dataTable = (
-      <table id={dataTableId} className="sr-only" aria-label="Chart data table">
-        <thead>
-          <tr>
-            <th scope="col">Label</th>
-            <th scope="col">Value</th>
-            {type === "pie" && <th scope="col">Percentage</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((point, index) => {
-            const percentage = type === "pie" ? ((point.value / totalValue) * 100).toFixed(1) : undefined
-            return (
-              <tr key={index}>
-                <td>{point.label}</td>
-                <td>{point.value}</td>
-                {percentage && <td>{percentage}%</td>}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    )
+    // Custom tooltip
+    const CustomTooltip = ({ active, payload }: any) => {
+      if (active && payload && payload.length) {
+        return (
+          <div className="rounded-lg border border-border bg-card p-3 shadow-lg">
+            <p className="text-sm font-medium text-foreground">{payload[0].name}</p>
+            <p className="text-sm text-muted-foreground">
+              Value: <span className="font-semibold text-foreground">{payload[0].value}</span>
+            </p>
+          </div>
+        )
+      }
+      return null
+    }
+
+    const renderChart = () => {
+      switch (type) {
+        case "bar":
+          return (
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData}>
+                {showGrid && <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />}
+                <XAxis
+                  dataKey="name"
+                  className="text-xs text-muted-foreground"
+                  stroke="hsl(var(--muted-foreground))"
+                />
+                <YAxis
+                  className="text-xs text-muted-foreground"
+                  stroke="hsl(var(--muted-foreground))"
+                />
+                <Tooltip content={<CustomTooltip />} />
+                {showLegend && <Legend />}
+                <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          )
+
+        case "line":
+          return (
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData}>
+                {showGrid && <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />}
+                <XAxis
+                  dataKey="name"
+                  className="text-xs text-muted-foreground"
+                  stroke="hsl(var(--muted-foreground))"
+                />
+                <YAxis
+                  className="text-xs text-muted-foreground"
+                  stroke="hsl(var(--muted-foreground))"
+                />
+                <Tooltip content={<CustomTooltip />} />
+                {showLegend && <Legend />}
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth={2}
+                  dot={{ fill: "hsl(var(--primary))", r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          )
+
+        case "area":
+          return (
+            <ResponsiveContainer width="100%" height={300}>
+              <AreaChart data={chartData}>
+                {showGrid && <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />}
+                <XAxis
+                  dataKey="name"
+                  className="text-xs text-muted-foreground"
+                  stroke="hsl(var(--muted-foreground))"
+                />
+                <YAxis
+                  className="text-xs text-muted-foreground"
+                  stroke="hsl(var(--muted-foreground))"
+                />
+                <Tooltip content={<CustomTooltip />} />
+                {showLegend && <Legend />}
+                <Area
+                  type="monotone"
+                  dataKey="value"
+                  stroke="hsl(var(--primary))"
+                  fill="hsl(var(--primary))"
+                  fillOpacity={0.2}
+                  strokeWidth={2}
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          )
+
+        case "pie":
+        case "donut":
+          return (
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  outerRadius={type === "donut" ? 100 : 120}
+                  innerRadius={type === "donut" ? 60 : 0}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Pie>
+                <Tooltip content={<CustomTooltip />} />
+                {showLegend && <Legend />}
+              </PieChart>
+            </ResponsiveContainer>
+          )
+
+        default:
+          return null
+      }
+    }
 
     return (
       <div
         ref={ref}
         role="img"
-        aria-label={chartDescription}
-        aria-labelledby={titleId ? titleId : undefined}
-        aria-describedby={dataTableId}
+        aria-labelledby={titleId}
         className={cn("rounded-lg border border-border bg-card p-6", className)}
         {...props}
       >
-        {dataTable}
         {title && (
           <h3 id={titleId} className="mb-4 text-lg font-semibold text-foreground">
             {title}
           </h3>
         )}
-        <div className="space-y-4" aria-hidden="true">
-          {type === "bar" && (
-            <div className="space-y-2">
-              {data.map((point, index) => (
-                <div key={index} className="space-y-1">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-foreground">{point.label}</span>
-                    <span className="text-muted-foreground">{point.value}</span>
-                  </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
-                    <div
-                      className="h-full bg-primary transition-all"
-                      style={{ width: `${(point.value / maxValue) * 100}%` }}
-                      aria-label={`${point.label}: ${point.value}`}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-          {type === "line" && (
-            <div className="h-48 flex items-end justify-between gap-2">
-              {data.map((point, index) => (
-                <div
-                  key={index}
-                  className="flex-1 flex flex-col items-center gap-1"
-                >
-                  <div
-                    className="w-full bg-primary rounded-t transition-all"
-                    style={{ height: `${(point.value / maxValue) * 100}%` }}
-                    aria-label={`${point.label}: ${point.value}`}
-                  />
-                  <span className="text-xs text-muted-foreground">{point.label}</span>
-                </div>
-              ))}
-            </div>
-          )}
-          {type === "pie" && (
-            <div className="flex items-center justify-center">
-              <div className="relative h-48 w-48">
-                <svg
-                  className="h-full w-full transform -rotate-90"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <title>{chartDescription}</title>
-                  {data.reduce(
-                    (acc, point, index) => {
-                      const percentage = point.value / totalValue
-                      const offset = acc.offset
-                      const strokeDasharray = `${percentage * 2 * Math.PI * 50} ${2 * Math.PI * 50}`
-                      const element = (
-                        <circle
-                          key={index}
-                          cx="50%"
-                          cy="50%"
-                          r="50"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="20"
-                          strokeDasharray={strokeDasharray}
-                          strokeDashoffset={-offset}
-                          className="text-primary"
-                          aria-label={`${point.label}: ${point.value} (${(percentage * 100).toFixed(1)}%)`}
-                        />
-                      )
-                      acc.offset += percentage * 2 * Math.PI * 50
-                      acc.elements.push(element)
-                      return acc
-                    },
-                    { offset: 0, elements: [] as React.ReactNode[] }
-                  ).elements}
-                </svg>
-              </div>
-            </div>
-          )}
-          {showLegend && (
-            <div className="flex flex-wrap gap-4 pt-4" role="list" aria-label="Chart legend">
-              {data.map((point, index) => (
-                <div key={index} className="flex items-center gap-2" role="listitem">
-                  <div className="h-3 w-3 rounded-full bg-primary" aria-hidden="true" />
-                  <span className="text-sm text-muted-foreground">
-                    {point.label}: {point.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        {renderChart()}
       </div>
     )
   }
 )
 
 Chart.displayName = "Chart"
-
-
