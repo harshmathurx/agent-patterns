@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { cn } from "@agent-patterns/core"
-import { Badge } from "./ui/badge"
 
 interface Pattern {
   id: string

@@ -75,7 +75,7 @@ export const AgentForm = React.forwardRef<HTMLFormElement, AgentFormProps>(
                 field.validation.parse(formData[field.name])
               } catch (err) {
                 if (err instanceof z.ZodError) {
-                  newErrors[field.name] = err.errors[0].message
+                  newErrors[field.name] = err.errors[0]?.message || "Validation error"
                 }
               }
             }
@@ -136,7 +136,7 @@ export const AgentForm = React.forwardRef<HTMLFormElement, AgentFormProps>(
             field.validation.parse(formData[name])
           } catch (err) {
             if (err instanceof z.ZodError) {
-              setErrors((prev) => ({ ...prev, [name]: err.errors[0].message }))
+              setErrors((prev) => ({ ...prev, [name]: err.errors[0]?.message || "Validation error" }))
             }
           }
         }

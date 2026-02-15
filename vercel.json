@@ -4,5 +4,16 @@
   "devCommand": "pnpm --filter @agent-patterns/playground dev",
   "installCommand": "pnpm install",
   "framework": "nextjs",
-  "outputDirectory": "apps/playground/.next"
+  "outputDirectory": "apps/playground/.next",
+  "git": {
+    "deploymentEnabled": {
+      "main": false,
+      "master": false
+    }
+  },
+  "github": {
+    "autoAlias": false,
+    "autoJobCancelation": true,
+    "silent": true
+  }
 }
