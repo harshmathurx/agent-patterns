@@ -6,7 +6,7 @@ import { MetricCard } from "@agent-patterns/metric-card/component"
 import { DataTable } from "@agent-patterns/data-table/component"
 import { Chart } from "@agent-patterns/chart/component"
 import { AgentForm } from "@agent-patterns/agent-form/component"
-import { ThinkingIndicator } from "@agent-patterns/thinking-indicator/component"
+import { StreamingIndicator } from "@agent-patterns/streaming-indicator/component"
 import { InsightsList } from "@agent-patterns/insights-list/component"
 import { DetailCard } from "@agent-patterns/detail-card/component"
 import type { Column } from "@agent-patterns/data-table/component"
@@ -27,7 +27,7 @@ const patterns = [
   { id: "data-table", name: "Data Table", description: "Flexible table for structured data" },
   { id: "chart", name: "Chart", description: "Bar, line, and pie chart visualizations" },
   { id: "agent-form", name: "Agent Form", description: "Dynamic form generation" },
-  { id: "thinking-indicator", name: "Thinking Indicator", description: "Loading states for AI processing" },
+  { id: "streaming-indicator", name: "Streaming Indicator", description: "Loading states for AI processing" },
   { id: "insights-list", name: "Insights List", description: "Display AI-generated insights" },
   { id: "detail-card", name: "Detail Card", description: "Structured detail views" },
 ]

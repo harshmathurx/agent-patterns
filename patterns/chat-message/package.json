@@ -1,0 +1,16 @@
+{
+  "name": "@agent-patterns/chat-message",
+  "version": "0.1.0",
+  "description": "Chat message pattern for Agent Patterns - bubbles, streaming text, avatars",
+  "main": "./component.tsx",
+  "types": "./component.tsx",
+  "dependencies": {
+    "@agent-patterns/core": "workspace:*",
+    "react": "^18.2.0",
+    "zod": "^3.22.4"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}
+
