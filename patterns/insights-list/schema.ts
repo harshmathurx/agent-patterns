@@ -1,94 +1,76 @@
 import { z } from "zod"
 
-/**
- * Insights List Schema
- * 
- * Standards Compliance:
- * - rams.ai: Requires proper list semantics, ARIA labels, keyboard navigation, screen reader support
- * - ui-skills.com: Schema-driven, LLM-generatable, uses list primitives
- * - Vercel Guidelines: Responsive, performant, uses CSS variables
- * 
- * Accessibility: Use semantic <ul> or <ol>, proper ARIA labels, keyboard navigation.
- * Performance: Virtualize large lists, memoize insight items.
- */
-export const insightsListSchema = z.object({
+export const insightSchema = z.object({
+  id: z
+    .string()
+    .describe("Unique identifier for the insight"),
   title: z
     .string()
+    .describe("Title/headline of the insight"),
+  description: z
+    .string()
+    .describe("Detailed description or explanation of the insight"),
+  type: z
+    .enum(["info", "warning", "success", "error"])
     .optional()
+    .default("info")
     .describe(
-      "Title for the insights list. " +
-      "Accessibility: Use <h2> or <h3> with proper heading hierarchy (rams.ai). " +
-      "Performance: Keep title static to avoid re-renders (Vercel Guidelines)."
+      "Type of insight that determines visual styling:\n" +
+      "- 'info': Informational insight (blue)\n" +
+      "- 'warning': Warning that needs attention (yellow)\n" +
+      "- 'success': Positive insight or achievement (green)\n" +
+      "- 'error': Error or critical issue (red)"
     ),
-  insights: z
+  icon: z
+    .any()
+    .optional()
+    .describe("Optional custom React icon component. If not provided, uses default icon based on type."),
+  priority: z
+    .enum(["high", "medium", "low"])
+    .optional()
+    .describe("Priority level displayed as a badge. Use with sortByPriority for automatic sorting."),
+  collapsible: z
+    .boolean()
+    .optional()
+    .default(false)
+    .describe("Whether the insight can be collapsed/expanded. Useful for long descriptions."),
+  actions: z
     .array(
       z.object({
-        id: z
+        label: z
           .string()
-          .describe(
-            "Unique identifier for the insight. " +
-            "Accessibility: Used for aria-describedby and focus management (rams.ai). " +
-            "ui-skills.com: Simple string key ensures LLM can generate valid schemas."
-          ),
-        title: z
-          .string()
-          .describe(
-            "Insight title or heading. " +
-            "Accessibility: Use <h3> or <h4> within list items for proper structure (rams.ai). " +
-            "Performance: Keep titles static to avoid re-renders (Vercel Guidelines)."
-          ),
-        description: z
-          .string()
-          .describe(
-            "Detailed description of the insight. " +
-            "Accessibility: Ensure descriptions are readable by screen readers (rams.ai). " +
-            "Performance: Limit description length for optimal rendering (Vercel Guidelines)."
-          ),
-        type: z
-          .enum(["info", "warning", "success", "error"])
-          .optional()
-          .describe(
-            "Insight type affecting visual styling: 'info' (default), 'warning', 'success', or 'error'. " +
-            "Accessibility: Don't rely solely on color; use icons or text labels (rams.ai WCAG). " +
-            "ui-skills.com: Enum ensures deterministic LLM generation. " +
-            "Vercel Guidelines: Use theme-aware color variables for types."
-          ),
-        icon: z
-          .any()
-          .optional()
-          .describe(
-            "Optional React icon component to display. " +
-            "Accessibility: If decorative, use aria-hidden='true'; if informative, provide aria-label (rams.ai). " +
-            "Performance: Use SVG icons optimized for size (Vercel Guidelines). " +
-            "ui-skills.com: Icon should be a simple React component, not complex stateful element."
-          ),
+          .describe("Button label text"),
+        onClick: z
+          .function()
+          .returns(z.void())
+          .describe("Function called when action button is clicked"),
       })
     )
-    .describe(
-      "Array of insight objects to display. " +
-      "Accessibility: Use semantic <ul> or <ol> with proper list structure (rams.ai). " +
-      "Performance: For 50+ insights, consider virtualization (Vercel Guidelines). " +
-      "ui-skills.com: Array structure is LLM-friendly and deterministic."
-    ),
+    .optional()
+    .describe("Optional array of action buttons displayed below the insight description"),
+})
+
+export const insightsListSchema = z.object({
+  insights: z
+    .array(insightSchema)
+    .describe("Array of insights to display. Each insight can have different types, priorities, and actions."),
   emptyMessage: z
     .string()
-    .optional()
     .default("No insights available")
-    .describe(
-      "Message to display when there are no insights. " +
-      "Accessibility: Use role='status' or aria-live to announce empty state (rams.ai). " +
-      "Performance: Only render when insights array is empty (Vercel Guidelines)."
-    ),
+    .describe("Message shown when there are no insights to display"),
+  showFilters: z
+    .boolean()
+    .default(false)
+    .describe("Show filter buttons above the list to filter by type (All, Info, Warnings, Success, Errors)"),
+  sortByPriority: z
+    .boolean()
+    .default(false)
+    .describe("Automatically sort insights by priority: high → medium → low"),
   className: z
     .string()
     .optional()
-    .describe(
-      "Additional CSS classes to apply to the list container. " +
-      "Vercel Guidelines: Use responsive utilities, theme-aware variables. " +
-      "Performance: Minimize class string operations (Vercel Guidelines)."
-    ),
+    .describe("Additional CSS classes to apply to the container"),
 })
 
-export type InsightsListData = z.infer<typeof insightsListSchema>
-
-
+export type Insight = z.infer<typeof insightSchema>
+export type InsightsListProps = z.infer<typeof insightsListSchema>
