@@ -65,7 +65,7 @@ importers:
       '@agent-patterns/metric-card':
         specifier: workspace:*
         version: link:../../patterns/metric-card
-      '@agent-patterns/thinking-indicator':
+      '@agent-patterns/streaming-indicator':
         specifier: workspace:*
         version: link:../../patterns/streaming-indicator
       next:

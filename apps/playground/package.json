@@ -14,7 +14,7 @@
     "@agent-patterns/data-table": "workspace:*",
     "@agent-patterns/chart": "workspace:*",
     "@agent-patterns/agent-form": "workspace:*",
-    "@agent-patterns/thinking-indicator": "workspace:*",
+    "@agent-patterns/streaming-indicator": "workspace:*",
     "@agent-patterns/insights-list": "workspace:*",
     "@agent-patterns/detail-card": "workspace:*",
     "next": "14.1.0",

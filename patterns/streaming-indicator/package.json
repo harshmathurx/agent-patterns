@@ -1,7 +1,7 @@
 {
-  "name": "@agent-patterns/thinking-indicator",
+  "name": "@agent-patterns/streaming-indicator",
   "version": "0.1.0",
-  "description": "Thinking Indicator pattern for Agent Patterns",
+  "description": "Streaming Indicator pattern for Agent Patterns",
   "main": "./component.tsx",
   "types": "./component.tsx",
   "dependencies": {
