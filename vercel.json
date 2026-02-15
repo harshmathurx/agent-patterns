@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd apps/playground && pnpm build",
-  "devCommand": "cd apps/playground && pnpm dev",
+  "buildCommand": "pnpm --filter @agent-patterns/playground build",
+  "devCommand": "pnpm --filter @agent-patterns/playground dev",
   "installCommand": "pnpm install",
   "framework": "nextjs",
   "git": {
