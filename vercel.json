@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm --filter @agent-patterns/playground build",
+  "buildCommand": "pnpm build && pnpm --filter @agent-patterns/playground build",
   "devCommand": "pnpm --filter @agent-patterns/playground dev",
-  "installCommand": "pnpm install",
+  "installCommand": "pnpm install --no-frozen-lockfile",
   "framework": "nextjs",
   "git": {
     "deploymentEnabled": {
